@@ -1,0 +1,2763 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#1A56DB" id="meta-theme-color" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <title>JKSSB JE Mechanical — Syllabus &amp; Study Tracker</title>
+
+  <style>
+    /* =========================================================================
+       MATERIAL DESIGN 3 (MATERIAL YOU) DESIGN TOKENS & THEME SYSTEM
+       ========================================================================= */
+    :root {
+      --bg-outer: #E5EAF2;
+      --bg-surface: #F4F7FB;
+      --bg-card: #FFFFFF;
+      --bg-card-alt: #EEF3FA;
+      --bg-nav: #FFFFFF;
+      --bg-input: #F1F5F9;
+
+      --text-primary: #0F172A;
+      --text-secondary: #475569;
+      --text-muted: #64748B;
+      --border-subtle: #E2E8F0;
+
+      --primary: #1D4ED8;
+      --primary-container: #DBEAFE;
+      --on-primary: #FFFFFF;
+      --on-primary-container: #1E3A8A;
+
+      --read: #0D9488;
+      --read-bg: #CCFBF1;
+      --read-text: #115E59;
+
+      --rev: #D97706;
+      --rev-bg: #FEF3C7;
+      --rev-text: #92400E;
+
+      --prac: #7C3AED;
+      --prac-bg: #EDE9FE;
+      --prac-text: #5B21B6;
+
+      --danger: #DC2626;
+      --danger-bg: #FEE2E2;
+
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+      --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+      --shadow-fab: 0 6px 18px rgba(29, 78, 216, 0.35);
+
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-pill: 999px;
+
+      --font-sans: 'Roboto', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    [data-theme="dark"] {
+      --bg-outer: #070B12;
+      --bg-surface: #0F1520;
+      --bg-card: #182130;
+      --bg-card-alt: #212C3F;
+      --bg-nav: #141C29;
+      --bg-input: #1E293B;
+
+      --text-primary: #F1F5F9;
+      --text-secondary: #CBD5E1;
+      --text-muted: #94A3B8;
+      --border-subtle: #273449;
+
+      --primary: #60A5FA;
+      --primary-container: #1E3A5F;
+      --on-primary: #0B192C;
+      --on-primary-container: #DBEAFE;
+
+      --read: #2DD4BF;
+      --read-bg: rgba(45, 212, 191, 0.16);
+      --read-text: #5EEAD4;
+
+      --rev: #FBBF24;
+      --rev-bg: rgba(251, 191, 36, 0.16);
+      --rev-text: #FDE68A;
+
+      --prac: #A78BFA;
+      --prac-bg: rgba(167, 139, 250, 0.18);
+      --prac-text: #DDD6FE;
+
+      --danger: #F87171;
+      --danger-bg: rgba(248, 113, 113, 0.16);
+
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.4);
+      --shadow-fab: 0 6px 18px rgba(96, 165, 250, 0.25);
+    }
+
+    /* =========================================================================
+       RESET & ANDROID SHELL LAYOUT
+       ========================================================================= */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: var(--font-sans);
+      background-color: var(--bg-outer);
+      color: var(--text-primary);
+      overflow: hidden;
+      line-height: 1.45;
+    }
+
+    /* Centered Android viewport on desktop; full screen on Android phones */
+    .android-shell {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      height: 100%;
+      margin: 0 auto;
+      background-color: var(--bg-surface);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.15);
+    }
+
+    @media (max-width: 500px) {
+      .android-shell {
+        max-width: 100%;
+        box-shadow: none;
+      }
+    }
+
+    /* =========================================================================
+       TOP APP BAR
+       ========================================================================= */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      z-index: 20;
+      flex-shrink: 0;
+    }
+
+    .top-bar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #1D4ED8, #3B82F6);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 3px 10px rgba(29, 78, 216, 0.25);
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-title {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-subtitle {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .top-bar-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .icon-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-pill);
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    .icon-btn:hover {
+      background-color: var(--bg-card-alt);
+    }
+
+    .icon-btn:active {
+      transform: scale(0.92);
+    }
+
+    /* =========================================================================
+       SCROLLABLE MAIN CONTENT AREA
+       ========================================================================= */
+    .main-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px 14px 96px 14px;
+      scroll-behavior: smooth;
+    }
+
+    .main-scroll::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .main-scroll::-webkit-scrollbar-thumb {
+      background: var(--border-subtle);
+      border-radius: 4px;
+    }
+
+    /* =========================================================================
+       COMMON MATERIAL 3 CARDS, CHIPS & BUTTONS
+       ========================================================================= */
+    .card {
+      background-color: var(--bg-card);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 12px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 14px 2px 10px;
+    }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--text-muted);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.15s ease, transform 0.1s ease, background 0.15s ease;
+      font-family: inherit;
+    }
+
+    .btn:active {
+      transform: scale(0.96);
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
+
+    .btn-tonal {
+      background-color: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+    }
+
+    .btn-danger {
+      background-color: var(--danger-bg);
+      color: var(--danger);
+    }
+
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+
+    .btn-block {
+      width: 100%;
+    }
+
+    /* Status Chips / Pills */
+    .chip-row {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      margin-bottom: 12px;
+      scrollbar-width: none;
+    }
+
+    .chip-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-chip {
+      flex-shrink: 0;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      border-radius: var(--radius-pill);
+      padding: 6px 13px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .filter-chip.active {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border-color: transparent;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .badge-read { background: var(--read-bg); color: var(--read-text); }
+    .badge-rev  { background: var(--rev-bg);  color: var(--rev-text); }
+    .badge-prac { background: var(--prac-bg); color: var(--prac-text); }
+    .badge-neutral { background: var(--bg-card-alt); color: var(--text-secondary); }
+    .badge-high { background: var(--danger-bg); color: var(--danger); }
+
+    /* =========================================================================
+       DASHBOARD HERO & METRICS
+       ========================================================================= */
+    .hero-card {
+      background: linear-gradient(135deg, #1E3A8A 0%, #1D4ED8 55%, #2563EB 100%);
+      color: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      right: -30px;
+      top: -30px;
+      pointer-events: none;
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .hero-meta-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      opacity: 0.85;
+      font-weight: 600;
+    }
+
+    .hero-big-num {
+      font-size: 28px;
+      font-weight: 800;
+      margin: 2px 0;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-sub {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    .ring-wrap {
+      position: relative;
+      width: 76px;
+      height: 76px;
+      flex-shrink: 0;
+    }
+
+    .ring-wrap svg {
+      transform: rotate(-90deg);
+    }
+
+    .ring-label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 15px;
+    }
+
+    .ring-label span {
+      font-size: 9px;
+      font-weight: 600;
+      opacity: 0.8;
+    }
+
+    .hero-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .hero-mini-stat {
+      text-align: center;
+    }
+
+    .hero-mini-val {
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .hero-mini-lbl {
+      font-size: 10px;
+      opacity: 0.85;
+    }
+
+    .today-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .stat-tile {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 12px 10px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stat-tile-val {
+      font-size: 20px;
+      font-weight: 800;
+      margin-top: 4px;
+    }
+
+    .stat-tile-lbl {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* Progress Bar */
+    .progress-track {
+      height: 7px;
+      background: var(--bg-card-alt);
+      border-radius: var(--radius-pill);
+      overflow: hidden;
+      margin-top: 6px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: var(--radius-pill);
+      transition: width 0.35s ease;
+    }
+
+    /* =========================================================================
+       SYLLABUS SUBJECT ACCORDIONS & TOPIC CARDS
+       ========================================================================= */
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-pill);
+      padding: 9px 14px;
+      margin-bottom: 10px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--text-primary);
+      font-size: 14px;
+      width: 100%;
+      font-family: inherit;
+    }
+
+    .subject-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      margin-bottom: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .subject-header {
+      padding: 14px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .subject-color-bar {
+      width: 4px;
+      border-radius: 4px;
+      align-self: stretch;
+      flex-shrink: 0;
+    }
+
+    .subject-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .subject-title-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .subject-name {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .marks-pill {
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: var(--radius-pill);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+
+    .subject-meta {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin-top: 3px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .subject-chevron {
+      color: var(--text-muted);
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .subject-card.expanded .subject-chevron {
+      transform: rotate(180deg);
+    }
+
+    .subject-body {
+      display: none;
+      border-top: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      padding: 10px;
+    }
+
+    .subject-card.expanded .subject-body {
+      display: block;
+    }
+
+    .subject-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      gap: 6px;
+    }
+
+    .topic-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 11px 12px;
+      margin-bottom: 8px;
+      transition: border-color 0.15s ease, transform 0.1s ease;
+      cursor: pointer;
+    }
+
+    .topic-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .topic-item:active {
+      transform: scale(0.99);
+    }
+
+    .topic-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .topic-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.35;
+    }
+
+    .topic-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 8px;
+    }
+
+    .topic-last-time {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .topic-quick-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-top: 9px;
+      padding-top: 8px;
+      border-top: 1px dashed var(--border-subtle);
+    }
+
+    .quick-log-btn {
+      border: none;
+      border-radius: 8px;
+      padding: 6px 4px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      font-family: inherit;
+      transition: filter 0.15s ease, transform 0.1s ease;
+    }
+
+    .quick-log-btn:active {
+      transform: scale(0.95);
+    }
+
+    .ql-read { background: var(--read-bg); color: var(--read-text); }
+    .ql-rev  { background: var(--rev-bg);  color: var(--rev-text); }
+    .ql-prac { background: var(--prac-bg); color: var(--prac-text); }
+
+    /* =========================================================================
+       TIMELINE VIEW (DATE & TIME WISE)
+       ========================================================================= */
+    .timeline-date-group {
+      margin-bottom: 16px;
+    }
+
+    .timeline-date-header {
+      font-size: 12px;
+      font-weight: 700;
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 10px;
+    }
+
+    .timeline-entry {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+    }
+
+    .timeline-entry::before {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 14px;
+      bottom: -14px;
+      width: 2px;
+      background: var(--border-subtle);
+    }
+
+    .timeline-entry:last-child::before {
+      display: none;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 1px;
+      top: 14px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid var(--bg-surface);
+    }
+
+    .dot-read { background: var(--read); }
+    .dot-revision { background: var(--rev); }
+    .dot-practice { background: var(--prac); }
+
+    .timeline-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 11px 12px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .timeline-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .timeline-time {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    /* =========================================================================
+       BOTTOM NAVIGATION BAR & FLOATING ACTION BUTTON (MATERIAL 3)
+       ========================================================================= */
+    .fab {
+      position: absolute;
+      right: 16px;
+      bottom: calc(78px + var(--safe-bottom));
+      height: 54px;
+      padding: 0 18px;
+      border-radius: 16px;
+      border: none;
+      background: var(--primary);
+      color: var(--on-primary);
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: var(--shadow-fab);
+      cursor: pointer;
+      z-index: 30;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .fab:active {
+      transform: scale(0.94);
+    }
+
+    .bottom-nav {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--bg-nav);
+      border-top: 1px solid var(--border-subtle);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 6px 6px calc(8px + var(--safe-bottom));
+      z-index: 25;
+    }
+
+    .nav-item {
+      border: none;
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      padding: 4px 0;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .nav-pill {
+      width: 54px;
+      height: 28px;
+      border-radius: var(--radius-pill);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+
+    .nav-item.active .nav-pill {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+
+    .nav-item.active {
+      color: var(--text-primary);
+    }
+
+    .nav-label {
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    /* =========================================================================
+       BOTTOM SHEETS & MODALS
+       ========================================================================= */
+    .sheet-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      backdrop-filter: blur(2px);
+      z-index: 50;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      animation: fadeIn 0.18s ease;
+    }
+
+    .sheet-backdrop.open {
+      display: flex;
+    }
+
+    .sheet-panel {
+      width: 100%;
+      max-height: 88%;
+      background: var(--bg-card);
+      border-radius: 24px 24px 0 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: slideUp 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+      box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .sheet-handle {
+      width: 38px;
+      height: 4px;
+      background: var(--border-subtle);
+      border-radius: 4px;
+      margin: 10px auto 4px;
+      flex-shrink: 0;
+    }
+
+    .sheet-header {
+      padding: 8px 18px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-subtle);
+      flex-shrink: 0;
+    }
+
+    .sheet-title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .sheet-body {
+      padding: 16px 18px 24px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    /* Forms */
+    .form-group {
+      margin-bottom: 13px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      margin-bottom: 5px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-input);
+      color: var(--text-primary);
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 70px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .color-picker-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .color-swatch {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      cursor: pointer;
+    }
+
+    .color-swatch.selected {
+      border-color: var(--text-primary);
+      transform: scale(1.1);
+    }
+
+    /* Snackbar */
+    .snackbar {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: calc(82px + var(--safe-bottom));
+      background: #1E293B;
+      color: #F8FAFC;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      z-index: 80;
+      opacity: 0;
+      transform: translateY(16px);
+      pointer-events: none;
+      transition: all 0.22s ease;
+    }
+
+    .snackbar.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 36px 18px;
+      color: var(--text-muted);
+    }
+
+    .empty-state svg {
+      opacity: 0.45;
+      margin-bottom: 10px;
+    }
+
+    .empty-state h3 {
+      font-size: 15px;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .empty-state p {
+      font-size: 13px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="android-shell" id="app-shell">
+
+    <!-- ==================== TOP APP BAR ==================== -->
+    <header class="top-bar">
+      <div class="top-bar-brand">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.604.852.997 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">JKSSB JE Mechanical</div>
+          <div class="brand-subtitle" id="header-subtitle">120 Marks • Syllabus &amp; Log Tracker</div>
+        </div>
+      </div>
+
+      <div class="top-bar-actions">
+        <button class="icon-btn" id="btn-theme-toggle" title="Toggle Dark/Light Theme" aria-label="Toggle Theme">
+          <svg id="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- ==================== MAIN SCROLLABLE VIEW ==================== -->
+    <main class="main-scroll" id="main-content"></main>
+
+    <!-- ==================== FLOATING ACTION BUTTON ==================== -->
+    <button class="fab" id="fab-btn" aria-label="Add Syllabus or Log">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+      </svg>
+      <span id="fab-label">Add Topic</span>
+    </button>
+
+    <!-- ==================== MATERIAL 3 BOTTOM NAVIGATION ==================== -->
+    <nav class="bottom-nav" aria-label="Primary Navigation">
+      <button class="nav-item active" data-tab="dashboard">
+        <div class="nav-pill">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="9" rx="1"></rect>
+            <rect x="14" y="3" width="7" height="5" rx="1"></rect>
+            <rect x="14" y="12" width="7" height="9" rx="1"></rect>
+            <rect x="3" y="16" width="7" height="5" rx="1"></rect>
+          </svg>
+        </div>
+        <span class="nav-label">Dashboard</span>
+      </button>
+
+      <button class="nav-item" data-tab="syllabus">
+        <div class="nav-pill">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          </svg>
+        </div>
+        <span class="nav-label">Syllabus</span>
+      </button>
+
+      <button class="nav-item" data-tab="timeline">
+        <div class="nav-pill">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </div>
+        <span class="nav-label">Timeline</span>
+      </button>
+
+      <button class="nav-item" data-tab="manage">
+        <div class="nav-pill">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="21" x2="4" y2="14"></line>
+            <line x1="4" y1="10" x2="4" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12" y2="3"></line>
+            <line x1="20" y1="21" x2="20" y2="16"></line>
+            <line x1="20" y1="12" x2="20" y2="3"></line>
+            <line x1="1" y1="14" x2="7" y2="14"></line>
+            <line x1="9" y1="8" x2="15" y2="8"></line>
+            <line x1="17" y1="16" x2="23" y2="16"></line>
+          </svg>
+        </div>
+        <span class="nav-label">Manage</span>
+      </button>
+    </nav>
+
+    <!-- ==================== REUSABLE BOTTOM SHEET MODAL ==================== -->
+    <div class="sheet-backdrop" id="sheet-backdrop" role="dialog" aria-modal="true">
+      <div class="sheet-panel" id="sheet-panel">
+        <div class="sheet-handle"></div>
+        <div class="sheet-header">
+          <div class="sheet-title" id="sheet-title">Sheet Title</div>
+          <button class="icon-btn" id="sheet-close" aria-label="Close">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="sheet-body" id="sheet-body"></div>
+      </div>
+    </div>
+
+    <!-- ==================== MATERIAL SNACKBAR ==================== -->
+    <div class="snackbar" id="snackbar" role="status" aria-live="polite">
+      <span id="snackbar-text">Saved!</span>
+    </div>
+
+    <!-- Hidden File Input for JSON Import -->
+    <input type="file" id="json-file-input" accept="application/json" style="display:none" />
+  </div>
+
+  <script>
+    /* =========================================================================
+       1. CONSTANTS & OFFICIAL JKSSB JE MECHANICAL SYLLABUS SEED DATA
+       ========================================================================= */
+    const STORAGE_KEY = 'jkssb_je_mech_tracker_v1';
+    const THEME_KEY = 'jkssb_je_mech_theme_v1';
+
+    const SUBJECT_COLORS = [
+      '#2563EB', '#0D9488', '#D97706', '#7C3AED',
+      '#E11D48', '#0284C7', '#059669', '#EA580C'
+    ];
+
+    /**
+     * Generates a unique ID string for subjects, topics, and study logs.
+     */
+    function uid(prefix = 'id') {
+      return `${prefix}_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 7)}`;
+    }
+
+    /**
+     * Returns the official JKSSB JE Mechanical Engineering Syllabus (120 Marks).
+     * Each topic starts with empty date/time-stamped logs and notes.
+     */
+    function getOfficialSyllabusSeed() {
+      const raw = [
+        {
+          name: 'Theory of Machines & Machine Design',
+          marks: 15,
+          color: '#2563EB',
+          topics: [
+            'Four bar linkage and link motion',
+            'Flywheels and fluctuation of energy',
+            'Power transmission by belts (V-belts & Flat belts)',
+            'Gears: Types, gear profile & gear ratio calculation',
+            'Cams and followers',
+            'Governors: Principles and classification',
+            'Design of keys, shafts, riveted joints & couplings'
+          ]
+        },
+        {
+          name: 'Engineering Mechanics & Strength of Materials',
+          marks: 15,
+          color: '#0D9488',
+          topics: [
+            'Laws of forces & Equilibrium of forces',
+            'Moment of Inertia & Laws of motion',
+            'Friction & Simple machines (M.A., V.R., Efficiency)',
+            'Concepts of stress, strain, elastic limit & elastic constants',
+            'Bending moments and shear force diagrams (SFD & BMD)',
+            'Stress in composite bars',
+            'Torsion in circular shafts',
+            'Columns: Euler\'s and Rankine\'s theories',
+            'Thin-walled pressure vessels'
+          ]
+        },
+        {
+          name: 'Thermal Engineering & Refrigeration/AC',
+          marks: 20,
+          color: '#EA580C',
+          topics: [
+            'Thermodynamics: Heat, work, temperature, 1st & 2nd Laws',
+            'Carnot, Otto and Diesel cycles',
+            'Properties of steam: P-v & P-T diagrams, dryness fraction & superheat',
+            'Rankine cycle (P-V, T-S, h-s planes & efficiency with/without pump work)',
+            'Refrigeration: Concept of COP & Carnot cycle',
+            'Vapour compression refrigeration cycle',
+            'Refrigerants: Properties & classification',
+            'Psychrometry: DBT, WBT, DPT & psychrometric processes'
+          ]
+        },
+        {
+          name: 'Fluid Mechanics & Machinery',
+          marks: 15,
+          color: '#0284C7',
+          topics: [
+            'Properties & classification of fluids, Newton\'s law of viscosity',
+            'Fluid statics & pressure measurement (U-tube & inclined manometers)',
+            'Fluid kinematics: Streamline, laminar/turbulent flow & continuity equation',
+            'Dynamics of ideal fluids: Bernoulli\'s equation (Total, velocity & pressure head)',
+            'Flow rate measurement: Venturimeter, Pitot tube & Orifice meter',
+            'Hydraulic Turbines (Pelton, Francis, Kaplan)',
+            'Centrifugal Pumps & Hydraulic Machinery'
+          ]
+        },
+        {
+          name: 'Material Science & Production Engineering',
+          marks: 20,
+          color: '#7C3AED',
+          topics: [
+            'Structure of metals: Space lattice, Unit cell (BCC, FCC, HCP)',
+            'Iron-carbon diagram & Classification of steels (mild & alloy steel)',
+            'Heat treatment of steel',
+            'Welding: Arc, Gas, Resistance, TIG & MIG welding',
+            'Brazing, Soldering, Welding defects & testing',
+            'Foundry & Casting methods, processes & casting defects',
+            'Metal forming: Forging, Extrusion & Rolling',
+            'Metal cutting principles & cutting tools',
+            'Machining principles: Lathe, Milling, Drilling, Shaping & Grinding'
+          ]
+        },
+        {
+          name: 'Metrology & Automobile Engineering',
+          marks: 15,
+          color: '#E11D48',
+          topics: [
+            'Tools used in Linear & Angular measurement',
+            'Surface finish & Measurement errors',
+            'Limits, Fits and Tolerances',
+            'Classification of Automobiles',
+            'Transmission, Steering, Braking & Suspension systems',
+            'I.C. Engine Combustion process',
+            'I.C. Engine Performance parameters',
+            'Cooling and Lubrication systems in I.C. Engines'
+          ]
+        },
+        {
+          name: 'Industrial Management & CAD/CAM',
+          marks: 20,
+          color: '#059669',
+          topics: [
+            'Management functions: Planning, Organizing, Leading & Controlling',
+            'Inventory Control & Economic Order Quantity (EOQ)',
+            'Inspection & Quality Control',
+            'Basic concepts of CAD/CAM',
+            'NC, DNC and CNC machines (G-codes & M-codes)'
+          ]
+        }
+      ];
+
+      return {
+        version: 1,
+        subjects: raw.map((sub) => ({
+          id: uid('sub'),
+          name: sub.name,
+          marks: sub.marks,
+          color: sub.color,
+          topics: sub.topics.map((title) => ({
+            id: uid('top'),
+            title,
+            priority: 'Medium',
+            notes: '',
+            logs: [] // Array of { id, type: 'read'|'revision'|'practice', timestamp, durationMin, questions, accuracy, note }
+          }))
+        }))
+      };
+    }
+
+    /* =========================================================================
+       2. APPLICATION STATE & LOCALSTORAGE PERSISTENCE
+       ========================================================================= */
+    const state = {
+      data: null,
+      activeTab: 'dashboard',
+      expandedSubjectIds: new Set(),
+      searchQuery: '',
+      syllabusFilter: 'all', // all | pending | read | revised | practiced
+      timelineFilter: 'all', // all | read | revision | practice
+      timelineDateFilter: '', // YYYY-MM-DD optional
+      snackbarTimer: null
+    };
+
+    /**
+     * Loads saved data from localStorage with safe fallback to official seed.
+     */
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed && Array.isArray(parsed.subjects)) {
+            state.data = parsed;
+            if (state.data.subjects.length > 0) {
+              state.expandedSubjectIds.add(state.data.subjects[0].id);
+            }
+            return;
+          }
+        }
+      } catch (err) {
+        console.error('Failed to load state from localStorage:', err);
+      }
+      state.data = getOfficialSyllabusSeed();
+      if (state.data.subjects.length > 0) {
+        state.expandedSubjectIds.add(state.data.subjects[0].id);
+      }
+      saveState();
+    }
+
+    /**
+     * Saves current state to localStorage safely.
+     */
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state.data));
+      } catch (err) {
+        console.error('Failed to save state:', err);
+        showSnackbar('Storage full — please export a backup.');
+      }
+    }
+
+    /* =========================================================================
+       3. DATE, TIME & HTML ESCAPING UTILITIES
+       ========================================================================= */
+    function escapeHtml(str = '') {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    /**
+     * Returns current local date-time string formatted for <input type="datetime-local">
+     * Example: "2026-11-20T00:15"
+     */
+    function getLocalDateTimeValue(dateObj = new Date()) {
+      const pad = (n) => String(n).padStart(2, '0');
+      const y = dateObj.getFullYear();
+      const m = pad(dateObj.getMonth() + 1);
+      const d = pad(dateObj.getDate());
+      const h = pad(dateObj.getHours());
+      const min = pad(dateObj.getMinutes());
+      return `${y}-${m}-${d}T${h}:${min}`;
+    }
+
+    /**
+     * Returns YYYY-MM-DD in local time for grouping and daily checks.
+     */
+    function getLocalDateKey(isoOrLocalStr) {
+      const d = new Date(isoOrLocalStr);
+      if (isNaN(d.getTime())) return 'Unknown Date';
+      const pad = (n) => String(n).padStart(2, '0');
+      return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+    }
+
+    /**
+     * Formats timestamp into readable Date + Time, e.g., "20 Nov 2026, 12:15 AM"
+     */
+    function formatDateTime(ts) {
+      const d = new Date(ts);
+      if (isNaN(d.getTime())) return 'Invalid date';
+      return d.toLocaleString('en-IN', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+      });
+    }
+
+    /**
+     * Formats timestamp into time only, e.g., "12:15 AM"
+     */
+    function formatTimeOnly(ts) {
+      const d = new Date(ts);
+      if (isNaN(d.getTime())) return '';
+      return d.toLocaleTimeString('en-IN', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+      });
+    }
+
+    /**
+     * Formats a YYYY-MM-DD date key into a friendly header ("Today", "Yesterday", or "18 Nov 2026").
+     */
+    function formatFriendlyDateHeader(dateKey) {
+      const todayKey = getLocalDateKey(new Date());
+      const yest = new Date();
+      yest.setDate(yest.getDate() - 1);
+      const yestKey = getLocalDateKey(yest);
+
+      if (dateKey === todayKey) return 'Today • ' + formatPrettyDateKey(dateKey);
+      if (dateKey === yestKey) return 'Yesterday • ' + formatPrettyDateKey(dateKey);
+      return formatPrettyDateKey(dateKey);
+    }
+
+    function formatPrettyDateKey(dateKey) {
+      const parts = dateKey.split('-');
+      if (parts.length !== 3) return dateKey;
+      const d = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+      return d.toLocaleDateString('en-IN', {
+        weekday: 'short',
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric'
+      });
+    }
+
+    /* =========================================================================
+       4. ANALYTICS & HELPER QUERIES
+       ========================================================================= */
+    function findSubject(subjectId) {
+      return state.data.subjects.find((s) => s.id === subjectId) || null;
+    }
+
+    function findTopic(subjectId, topicId) {
+      const sub = findSubject(subjectId);
+      if (!sub) return null;
+      return sub.topics.find((t) => t.id === topicId) || null;
+    }
+
+    /**
+     * Summarizes logs for a single topic.
+     */
+    function getTopicStats(topic) {
+      const logs = Array.isArray(topic.logs) ? topic.logs : [];
+      const sorted = [...logs].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+      const reads = sorted.filter((l) => l.type === 'read');
+      const revisions = sorted.filter((l) => l.type === 'revision');
+      const practices = sorted.filter((l) => l.type === 'practice');
+      const totalQuestions = practices.reduce((acc, l) => acc + (Number(l.questions) || 0), 0);
+
+      return {
+        readCount: reads.length,
+        revisionCount: revisions.length,
+        practiceCount: practices.length,
+        totalQuestions,
+        isRead: reads.length > 0,
+        isRevised: revisions.length > 0,
+        isPracticed: practices.length > 0,
+        lastLog: sorted[0] || null,
+        lastRead: reads[0] || null,
+        lastRevision: revisions[0] || null,
+        lastPractice: practices[0] || null,
+        sortedLogs: sorted
+      };
+    }
+
+    /**
+     * Computes global exam metrics (weighted marks, topic counts, today's activity, revision reminders).
+     */
+    function getGlobalAnalytics() {
+      let totalSubjects = state.data.subjects.length;
+      let totalMarks = 0;
+      let earnedMarksRead = 0;
+      let totalTopics = 0;
+      let topicsRead = 0;
+      let topicsRevised = 0;
+      let topicsPracticed = 0;
+      let totalRevisions = 0;
+      let totalPracticeSessions = 0;
+      let totalMCQs = 0;
+
+      const todayKey = getLocalDateKey(new Date());
+      let todayReads = 0;
+      let todayRevisions = 0;
+      let todayPractices = 0;
+      let todayMCQs = 0;
+
+      const allLogs = [];
+      const revisionDue = [];
+      const nowMs = Date.now();
+
+      state.data.subjects.forEach((sub) => {
+        const subMarks = Number(sub.marks) || 0;
+        totalMarks += subMarks;
+        const tCount = sub.topics.length;
+        totalTopics += tCount;
+
+        let subReadCount = 0;
+
+        sub.topics.forEach((top) => {
+          const st = getTopicStats(top);
+          if (st.isRead) {
+            topicsRead++;
+            subReadCount++;
+          }
+          if (st.isRevised) topicsRevised++;
+          if (st.isPracticed) topicsPracticed++;
+
+          totalRevisions += st.revisionCount;
+          totalPracticeSessions += st.practiceCount;
+          totalMCQs += st.totalQuestions;
+
+          // Flag topics read more than 3 days ago with 0 revisions, or revised > 10 days ago
+          if (st.isRead) {
+            const refTs = st.lastRevision ? st.lastRevision.timestamp : st.lastRead.timestamp;
+            const daysSince = Math.floor((nowMs - new Date(refTs).getTime()) / (1000 * 60 * 60 * 24));
+            if ((st.revisionCount === 0 && daysSince >= 3) || daysSince >= 10) {
+              revisionDue.push({
+                subjectId: sub.id,
+                subjectName: sub.name,
+                topicId: top.id,
+                topicTitle: top.title,
+                daysSince,
+                revisionCount: st.revisionCount
+              });
+            }
+          }
+
+          st.sortedLogs.forEach((log) => {
+            allLogs.push({
+              ...log,
+              subjectId: sub.id,
+              subjectName: sub.name,
+              subjectColor: sub.color,
+              topicId: top.id,
+              topicTitle: top.title
+            });
+
+            if (getLocalDateKey(log.timestamp) === todayKey) {
+              if (log.type === 'read') todayReads++;
+              if (log.type === 'revision') todayRevisions++;
+              if (log.type === 'practice') {
+                todayPractices++;
+                todayMCQs += Number(log.questions) || 0;
+              }
+            }
+          });
+        });
+
+        if (tCount > 0) {
+          earnedMarksRead += (subReadCount / tCount) * subMarks;
+        }
+      });
+
+      allLogs.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+      revisionDue.sort((a, b) => b.daysSince - a.daysSince);
+
+      const overallPercent = totalTopics > 0 ? Math.round((topicsRead / totalTopics) * 100) : 0;
+      const marksPercent = totalMarks > 0 ? Math.round((earnedMarksRead / totalMarks) * 100) : 0;
+
+      return {
+        totalSubjects,
+        totalMarks,
+        earnedMarksRead: Math.round(earnedMarksRead * 10) / 10,
+        marksPercent,
+        totalTopics,
+        topicsRead,
+        topicsRevised,
+        topicsPracticed,
+        totalRevisions,
+        totalPracticeSessions,
+        totalMCQs,
+        overallPercent,
+        todayReads,
+        todayRevisions,
+        todayPractices,
+        todayMCQs,
+        allLogs,
+        revisionDue
+      };
+    }
+
+    /* =========================================================================
+       5. SNACKBAR & THEME MANAGEMENT
+       ========================================================================= */
+    function showSnackbar(message) {
+      const bar = document.getElementById('snackbar');
+      const txt = document.getElementById('snackbar-text');
+      txt.textContent = message;
+      bar.classList.add('show');
+      clearTimeout(state.snackbarTimer);
+      state.snackbarTimer = setTimeout(() => {
+        bar.classList.remove('show');
+      }, 2800);
+    }
+
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      const meta = document.getElementById('meta-theme-color');
+      meta.setAttribute('content', theme === 'dark' ? '#0F1520' : '#1A56DB');
+
+      const icon = document.getElementById('theme-icon');
+      if (theme === 'dark') {
+        icon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
+      } else {
+        icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+      }
+      try { localStorage.setItem(THEME_KEY, theme); } catch (_) {}
+    }
+
+    function initTheme() {
+      let saved = 'light';
+      try {
+        saved = localStorage.getItem(THEME_KEY) ||
+          (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      } catch (_) {}
+      applyTheme(saved);
+    }
+
+    /* =========================================================================
+       6. BOTTOM SHEET ENGINE
+       ========================================================================= */
+    function openSheet(title, htmlContent) {
+      document.getElementById('sheet-title').textContent = title;
+      document.getElementById('sheet-body').innerHTML = htmlContent;
+      document.getElementById('sheet-backdrop').classList.add('open');
+    }
+
+    function closeSheet() {
+      document.getElementById('sheet-backdrop').classList.remove('open');
+    }
+
+    /* =========================================================================
+       7. MAIN RENDERING ROUTER
+       ========================================================================= */
+    function render() {
+      const container = document.getElementById('main-content');
+      const fab = document.getElementById('fab-btn');
+      const fabLabel = document.getElementById('fab-label');
+
+      // Update active nav item
+      document.querySelectorAll('.nav-item').forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.tab === state.activeTab);
+      });
+
+      const stats = getGlobalAnalytics();
+      document.getElementById('header-subtitle').textContent =
+        `${stats.totalMarks} Marks • ${stats.topicsRead}/${stats.totalTopics} Topics Read`;
+
+      if (state.activeTab === 'dashboard') {
+        fab.style.display = 'flex';
+        fabLabel.textContent = 'Quick Log';
+        container.innerHTML = renderDashboard(stats);
+      } else if (state.activeTab === 'syllabus') {
+        fab.style.display = 'flex';
+        fabLabel.textContent = 'Add Subject';
+        container.innerHTML = renderSyllabus();
+      } else if (state.activeTab === 'timeline') {
+        fab.style.display = 'flex';
+        fabLabel.textContent = 'Log Study';
+        container.innerHTML = renderTimeline(stats);
+      } else if (state.activeTab === 'manage') {
+        fab.style.display = 'none';
+        container.innerHTML = renderManage(stats);
+      }
+    }
+
+    /* =========================================================================
+       8. VIEW 1: DASHBOARD
+       ========================================================================= */
+    function renderDashboard(stats) {
+      const circumference = 2 * Math.PI * 30;
+      const offset = circumference - (stats.overallPercent / 100) * circumference;
+
+      let subjectProgressHtml = '';
+      state.data.subjects.forEach((sub) => {
+        const total = sub.topics.length;
+        const read = sub.topics.filter((t) => getTopicStats(t).isRead).length;
+        const rev = sub.topics.filter((t) => getTopicStats(t).isRevised).length;
+        const prac = sub.topics.filter((t) => getTopicStats(t).isPracticed).length;
+        const pct = total > 0 ? Math.round((read / total) * 100) : 0;
+
+        subjectProgressHtml += `
+          <div class="card" style="cursor:pointer; margin-bottom:10px;" onclick="jumpToSubject('${sub.id}')">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:8px;">
+              <div style="font-size:13.5px; font-weight:700; color:var(--text-primary);">${escapeHtml(sub.name)}</div>
+              <span class="marks-pill">${sub.marks} M</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:11.5px; color:var(--text-muted); margin-top:5px;">
+              <span>Read: <strong style="color:var(--read)">${read}/${total}</strong> • Rev: <strong style="color:var(--rev)">${rev}</strong> • Prac: <strong style="color:var(--prac)">${prac}</strong></span>
+              <strong style="color:var(--text-primary)">${pct}%</strong>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" style="width:${pct}%; background:${sub.color};"></div>
+            </div>
+          </div>
+        `;
+      });
+
+      let dueHtml = '';
+      if (stats.revisionDue.length > 0) {
+        dueHtml = `
+          <div class="section-header">
+            <span class="section-title">Due for Revision</span>
+            <span class="badge badge-rev">${stats.revisionDue.length} topics</span>
+          </div>
+          ${stats.revisionDue.slice(0, 3).map((item) => `
+            <div class="card" style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px;">
+              <div style="min-width:0;">
+                <div style="font-size:13px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(item.topicTitle)}</div>
+                <div style="font-size:11px; color:var(--text-muted);">${escapeHtml(item.subjectName)} • ${item.daysSince}d ago</div>
+              </div>
+              <button class="btn btn-sm ql-rev" onclick="openLogSheet('${item.subjectId}', '${item.topicId}', 'revision')">Revise</button>
+            </div>
+          `).join('')}
+        `;
+      }
+
+      const recentLogsHtml = stats.allLogs.length === 0
+        ? `<div class="card" style="text-align:center; padding:18px; color:var(--text-muted); font-size:13px;">
+             No study sessions logged yet. Tap <strong>Syllabus</strong> or <strong>Quick Log</strong> to start tracking date &amp; time!
+           </div>`
+        : stats.allLogs.slice(0, 4).map((l) => renderCompactLogRow(l)).join('');
+
+      return `
+        <!-- Hero Progress Banner -->
+        <section class="hero-card">
+          <div class="hero-top">
+            <div>
+              <div class="hero-meta-label">JKSSB JE Mech Readiness</div>
+              <div class="hero-big-num">${stats.earnedMarksRead} / ${stats.totalMarks} <span style="font-size:13px; font-weight:600; opacity:0.85;">Marks</span></div>
+              <div class="hero-sub">${stats.topicsRead} of ${stats.totalTopics} topics completed reading</div>
+            </div>
+            <div class="ring-wrap">
+              <svg width="76" height="76" viewBox="0 0 76 76">
+                <circle cx="38" cy="38" r="30" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="7"></circle>
+                <circle cx="38" cy="38" r="30" fill="none" stroke="#FFFFFF" stroke-width="7"
+                  stroke-dasharray="${circumference}" stroke-dashoffset="${offset}" stroke-linecap="round"></circle>
+              </svg>
+              <div class="ring-label">${stats.overallPercent}%<span>READ</span></div>
+            </div>
+          </div>
+
+          <div class="hero-stats-grid">
+            <div class="hero-mini-stat">
+              <div class="hero-mini-val">${stats.totalRevisions}</div>
+              <div class="hero-mini-lbl">Revisions Done</div>
+            </div>
+            <div class="hero-mini-stat">
+              <div class="hero-mini-val">${stats.totalPracticeSessions}</div>
+              <div class="hero-mini-lbl">Practice Sets</div>
+            </div>
+            <div class="hero-mini-stat">
+              <div class="hero-mini-val">${stats.totalMCQs}</div>
+              <div class="hero-mini-lbl">MCQs Solved</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Today's Date-Wise Summary -->
+        <div class="section-header" style="margin-top:4px;">
+          <span class="section-title">Today's Study (${formatPrettyDateKey(getLocalDateKey(new Date()))})</span>
+        </div>
+        <div class="today-grid">
+          <div class="stat-tile">
+            <span class="badge badge-read">Read</span>
+            <div class="stat-tile-val" style="color:var(--read)">${stats.todayReads}</div>
+            <div class="stat-tile-lbl">Sessions</div>
+          </div>
+          <div class="stat-tile">
+            <span class="badge badge-rev">Revised</span>
+            <div class="stat-tile-val" style="color:var(--rev)">${stats.todayRevisions}</div>
+            <div class="stat-tile-lbl">Sessions</div>
+          </div>
+          <div class="stat-tile">
+            <span class="badge badge-prac">Practice</span>
+            <div class="stat-tile-val" style="color:var(--prac)">${stats.todayMCQs}</div>
+            <div class="stat-tile-lbl">MCQs (${stats.todayPractices})</div>
+          </div>
+        </div>
+
+        ${dueHtml}
+
+        <!-- Subject-Wise Breakdown -->
+        <div class="section-header">
+          <span class="section-title">Subject-Wise Progress</span>
+          <button class="btn btn-sm btn-tonal" onclick="switchTab('syllabus')">Open Syllabus</button>
+        </div>
+        ${subjectProgressHtml || '<div class="empty-state"><p>No subjects added yet.</p></div>'}
+
+        <!-- Recent Logs -->
+        <div class="section-header">
+          <span class="section-title">Recent Date &amp; Time Logs</span>
+          ${stats.allLogs.length > 0 ? `<button class="btn btn-sm btn-outline" onclick="switchTab('timeline')">View All</button>` : ''}
+        </div>
+        ${recentLogsHtml}
+      `;
+    }
+
+    function renderCompactLogRow(log) {
+      const badgeCls = log.type === 'read' ? 'badge-read' : (log.type === 'revision' ? 'badge-rev' : 'badge-prac');
+      const label = log.type === 'read' ? 'READ' : (log.type === 'revision' ? 'REVISION' : `PRACTICE${log.questions ? ' • ' + log.questions + ' Qs' : ''}`);
+      return `
+        <div class="card" style="padding:11px 12px; margin-bottom:8px; cursor:pointer;" onclick="openTopicDetailSheet('${log.subjectId}', '${log.topicId}')">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; margin-bottom:4px;">
+            <span class="badge ${badgeCls}">${label}</span>
+            <span style="font-size:11px; color:var(--text-muted); font-weight:600;">${formatDateTime(log.timestamp)}</span>
+          </div>
+          <div style="font-size:13px; font-weight:700;">${escapeHtml(log.topicTitle)}</div>
+          <div style="font-size:11.5px; color:var(--text-muted);">${escapeHtml(log.subjectName)}${log.note ? ' — ' + escapeHtml(log.note) : ''}</div>
+        </div>
+      `;
+    }
+
+    /* =========================================================================
+       9. VIEW 2: SUBJECT-WISE & TOPIC-WISE SYLLABUS
+       ========================================================================= */
+    function renderSyllabus() {
+      const q = state.searchQuery.trim().toLowerCase();
+      const filter = state.syllabusFilter;
+
+      const chips = [
+        { id: 'all', label: 'All Topics' },
+        { id: 'pending', label: 'Not Read' },
+        { id: 'read', label: 'Read' },
+        { id: 'revised', label: 'Revised' },
+        { id: 'practiced', label: 'Practiced' }
+      ];
+
+      let subjectsHtml = '';
+
+      state.data.subjects.forEach((sub) => {
+        const subMatchesSearch = q && sub.name.toLowerCase().includes(q);
+
+        const filteredTopics = sub.topics.filter((t) => {
+          const st = getTopicStats(t);
+          if (filter === 'pending' && st.isRead) return false;
+          if (filter === 'read' && !st.isRead) return false;
+          if (filter === 'revised' && !st.isRevised) return false;
+          if (filter === 'practiced' && !st.isPracticed) return false;
+
+          if (q && !subMatchesSearch) {
+            return t.title.toLowerCase().includes(q) || (t.notes || '').toLowerCase().includes(q);
+          }
+          return true;
+        });
+
+        // If searching or filtering and no topics match, skip empty subject unless subject title itself matched with 'all'
+        if ((q || filter !== 'all') && filteredTopics.length === 0 && !(subMatchesSearch && filter === 'all')) {
+          return;
+        }
+
+        const isExpanded = state.expandedSubjectIds.has(sub.id) || Boolean(q);
+        const totalInSub = sub.topics.length;
+        const readInSub = sub.topics.filter((t) => getTopicStats(t).isRead).length;
+        const pct = totalInSub > 0 ? Math.round((readInSub / totalInSub) * 100) : 0;
+
+        const topicsHtml = filteredTopics.length === 0
+          ? `<div style="text-align:center; padding:14px; font-size:12.5px; color:var(--text-muted);">
+               No topics in this subject yet. Tap <strong>+ Add Topic</strong> above.
+             </div>`
+          : filteredTopics.map((topic) => {
+              const st = getTopicStats(topic);
+              return `
+                <div class="topic-item" onclick="openTopicDetailSheet('${sub.id}', '${topic.id}')">
+                  <div class="topic-top">
+                    <div class="topic-title">${escapeHtml(topic.title)}</div>
+                    ${topic.priority === 'High' ? '<span class="badge badge-high">High</span>' : ''}
+                  </div>
+
+                  <div class="topic-badges">
+                    <span class="badge ${st.isRead ? 'badge-read' : 'badge-neutral'}">
+                      ${st.isRead ? '✓ Read (' + st.readCount + ')' : 'Not Read'}
+                    </span>
+                    <span class="badge ${st.isRevised ? 'badge-rev' : 'badge-neutral'}">
+                      Rev: ${st.revisionCount}
+                    </span>
+                    <span class="badge ${st.isPracticed ? 'badge-prac' : 'badge-neutral'}">
+                      Prac: ${st.practiceCount}${st.totalQuestions > 0 ? ' (' + st.totalQuestions + ' Qs)' : ''}
+                    </span>
+                  </div>
+
+                  ${st.lastLog ? `
+                    <div class="topic-last-time">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                      Last ${st.lastLog.type}: ${formatDateTime(st.lastLog.timestamp)}
+                    </div>
+                  ` : ''}
+
+                  <div class="topic-quick-actions" onclick="event.stopPropagation()">
+                    <button class="quick-log-btn ql-read" onclick="openLogSheet('${sub.id}', '${topic.id}', 'read')">+ Read</button>
+                    <button class="quick-log-btn ql-rev" onclick="openLogSheet('${sub.id}', '${topic.id}', 'revision')">+ Revise</button>
+                    <button class="quick-log-btn ql-prac" onclick="openLogSheet('${sub.id}', '${topic.id}', 'practice')">+ Practice</button>
+                  </div>
+                </div>
+              `;
+            }).join('');
+
+        subjectsHtml += `
+          <div class="subject-card ${isExpanded ? 'expanded' : ''}">
+            <div class="subject-header" onclick="toggleSubjectExpand('${sub.id}')">
+              <div class="subject-color-bar" style="background:${sub.color};"></div>
+              <div class="subject-info">
+                <div class="subject-title-row">
+                  <span class="subject-name">${escapeHtml(sub.name)}</span>
+                  <span class="marks-pill">${sub.marks} Marks</span>
+                </div>
+                <div class="subject-meta">
+                  <span>${readInSub}/${totalInSub} Read (${pct}%)</span>
+                  <span>• ${filteredTopics.length} shown</span>
+                </div>
+                <div class="progress-track" style="margin-top:6px;">
+                  <div class="progress-fill" style="width:${pct}%; background:${sub.color};"></div>
+                </div>
+              </div>
+              <div class="subject-chevron">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </div>
+            </div>
+
+            <div class="subject-body">
+              <div class="subject-toolbar">
+                <button class="btn btn-sm btn-tonal" onclick="openTopicFormSheet('${sub.id}')">+ Add Topic</button>
+                <div style="display:flex; gap:6px;">
+                  <button class="btn btn-sm btn-outline" onclick="openSubjectFormSheet('${sub.id}')">Edit</button>
+                  <button class="btn btn-sm btn-danger" onclick="confirmDeleteSubject('${sub.id}')">Delete</button>
+                </div>
+              </div>
+              ${topicsHtml}
+            </div>
+          </div>
+        `;
+      });
+
+      return `
+        <!-- Search Input -->
+        <div class="search-box">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="syllabus-search" placeholder="Search JKSSB subjects or topics..."
+            value="${escapeHtml(state.searchQuery)}" oninput="onSearchInput(this.value)" />
+          ${state.searchQuery ? `<button class="icon-btn" style="width:28px;height:28px;" onclick="onSearchInput('')">✕</button>` : ''}
+        </div>
+
+        <!-- Status Filter Chips -->
+        <div class="chip-row">
+          ${chips.map((c) => `
+            <button class="filter-chip ${state.syllabusFilter === c.id ? 'active' : ''}"
+              onclick="setSyllabusFilter('${c.id}')">${c.label}</button>
+          `).join('')}
+        </div>
+
+        ${subjectsHtml || `
+          <div class="empty-state">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            <h3>No matching topics found</h3>
+            <p>Try clearing filters or add a new subject/topic using the button below.</p>
+          </div>
+        `}
+      `;
+    }
+
+    /* =========================================================================
+       10. VIEW 3: DATE & TIME WISE TIMELINE
+       ========================================================================= */
+    function renderTimeline(stats) {
+      const filters = [
+        { id: 'all', label: 'All Activity' },
+        { id: 'read', label: 'Reading' },
+        { id: 'revision', label: 'Revisions' },
+        { id: 'practice', label: 'Practice' }
+      ];
+
+      let logs = stats.allLogs;
+      if (state.timelineFilter !== 'all') {
+        logs = logs.filter((l) => l.type === state.timelineFilter);
+      }
+      if (state.timelineDateFilter) {
+        logs = logs.filter((l) => getLocalDateKey(l.timestamp) === state.timelineDateFilter);
+      }
+
+      // Group logs by YYYY-MM-DD
+      const grouped = new Map();
+      logs.forEach((log) => {
+        const key = getLocalDateKey(log.timestamp);
+        if (!grouped.has(key)) grouped.set(key, []);
+        grouped.get(key).push(log);
+      });
+
+      let groupsHtml = '';
+      grouped.forEach((dayLogs, dateKey) => {
+        groupsHtml += `
+          <div class="timeline-date-group">
+            <div class="timeline-date-header">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              ${formatFriendlyDateHeader(dateKey)} (${dayLogs.length})
+            </div>
+
+            ${dayLogs.map((l) => {
+              const badgeCls = l.type === 'read' ? 'badge-read' : (l.type === 'revision' ? 'badge-rev' : 'badge-prac');
+              const dotCls = l.type === 'read' ? 'dot-read' : (l.type === 'revision' ? 'dot-revision' : 'dot-practice');
+              const typeText = l.type === 'read' ? 'Read Topic' : (l.type === 'revision' ? 'Revision Done' : 'Practice Done');
+
+              const metaParts = [];
+              if (l.durationMin) metaParts.push(`${l.durationMin} min`);
+              if (l.questions) metaParts.push(`${l.questions} MCQs`);
+              if (l.accuracy) metaParts.push(`${l.accuracy}% acc`);
+
+              return `
+                <div class="timeline-entry">
+                  <div class="timeline-dot ${dotCls}"></div>
+                  <div class="timeline-card" style="cursor:pointer;" onclick="openTopicDetailSheet('${l.subjectId}', '${l.topicId}')">
+                    <div class="timeline-card-top">
+                      <span class="badge ${badgeCls}">${typeText}</span>
+                      <span class="timeline-time">${formatTimeOnly(l.timestamp)}</span>
+                    </div>
+                    <div style="font-size:13.5px; font-weight:700; margin-top:2px;">${escapeHtml(l.topicTitle)}</div>
+                    <div style="font-size:11.5px; color:var(--text-muted); margin-top:2px;">
+                      <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:${l.subjectColor}; margin-right:4px;"></span>
+                      ${escapeHtml(l.subjectName)}
+                    </div>
+                    ${metaParts.length > 0 ? `<div style="font-size:11.5px; font-weight:600; color:var(--text-secondary); margin-top:5px;">${metaParts.join(' • ')}</div>` : ''}
+                    ${l.note ? `<div style="font-size:12px; color:var(--text-secondary); margin-top:5px; padding:6px 8px; background:var(--bg-surface); border-radius:8px;">${escapeHtml(l.note)}</div>` : ''}
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        `;
+      });
+
+      return `
+        <div class="chip-row">
+          ${filters.map((f) => `
+            <button class="filter-chip ${state.timelineFilter === f.id ? 'active' : ''}"
+              onclick="setTimelineFilter('${f.id}')">${f.label}</button>
+          `).join('')}
+        </div>
+
+        <!-- Specific Date Filter -->
+        <div class="card" style="padding:10px 12px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+          <label for="timeline-date-picker" style="font-size:12px; font-weight:700; color:var(--text-secondary); white-space:nowrap;">Filter Date:</label>
+          <input id="timeline-date-picker" type="date" class="form-control" style="padding:6px 10px; font-size:13px;"
+            value="${state.timelineDateFilter}" onchange="setTimelineDateFilter(this.value)" />
+          ${state.timelineDateFilter ? `<button class="btn btn-sm btn-outline" onclick="setTimelineDateFilter('')">Clear</button>` : ''}
+        </div>
+
+        ${groupsHtml || `
+          <div class="empty-state">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <h3>No activity logs yet</h3>
+            <p>Every time you mark a topic as Read, Revised, or Practiced, it appears here date &amp; time wise.</p>
+          </div>
+        `}
+      `;
+    }
+
+    /* =========================================================================
+       11. VIEW 4: MANAGE, BACKUP & EXAM INFO
+       ========================================================================= */
+    function renderManage(stats) {
+      return `
+        <div class="section-header" style="margin-top:0;">
+          <span class="section-title">JKSSB JE Mechanical Exam Pattern</span>
+        </div>
+        <div class="card">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; font-size:12.5px;">
+            <div style="background:var(--bg-surface); padding:10px; border-radius:10px;">
+              <div style="color:var(--text-muted); font-size:11px;">Total Questions</div>
+              <div style="font-weight:800; font-size:16px;">120 MCQs</div>
+            </div>
+            <div style="background:var(--bg-surface); padding:10px; border-radius:10px;">
+              <div style="color:var(--text-muted); font-size:11px;">Max Marks &amp; Time</div>
+              <div style="font-weight:800; font-size:16px;">120 M • 120 Min</div>
+            </div>
+            <div style="background:var(--bg-surface); padding:10px; border-radius:10px;">
+              <div style="color:var(--text-muted); font-size:11px;">Negative Marking</div>
+              <div style="font-weight:800; font-size:15px; color:var(--danger);">-0.25 / wrong</div>
+            </div>
+            <div style="background:var(--bg-surface); padding:10px; border-radius:10px;">
+              <div style="color:var(--text-muted); font-size:11px;">Your Total Logs</div>
+              <div style="font-weight:800; font-size:16px; color:var(--primary);">${stats.allLogs.length} entries</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-header">
+          <span class="section-title">Syllabus Customization</span>
+        </div>
+        <div class="card" style="display:flex; flex-direction:column; gap:10px;">
+          <button class="btn btn-primary btn-block" onclick="openSubjectFormSheet()">+ Add New Custom Subject</button>
+          <button class="btn btn-tonal btn-block" onclick="openQuickTopicPicker()">+ Add Topic to Existing Subject</button>
+        </div>
+
+        <div class="section-header">
+          <span class="section-title">Backup &amp; Restore (Android Storage)</span>
+        </div>
+        <div class="card" style="display:flex; flex-direction:column; gap:10px;">
+          <p style="font-size:12.5px; color:var(--text-secondary);">
+            All your subjects, topics, and date-time study logs are stored locally on your device. Export or copy a JSON backup anytime to transfer to another phone.
+          </p>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <button class="btn btn-outline" onclick="exportBackupJSON()">Export Backup</button>
+            <button class="btn btn-outline" onclick="triggerImportJSON()">Import Backup</button>
+          </div>
+          <button class="btn btn-danger btn-block" onclick="confirmResetSyllabus()">Reset to Official JKSSB Syllabus</button>
+        </div>
+      `;
+    }
+
+    /* =========================================================================
+       12. BOTTOM SHEETS: TOPIC DETAILS, LOGGING, ADD/EDIT FORMS
+       ========================================================================= */
+
+    /**
+     * Opens the full Topic Detail bottom sheet with Read/Revision/Practice logs & notes.
+     */
+    function openTopicDetailSheet(subjectId, topicId) {
+      const sub = findSubject(subjectId);
+      const topic = findTopic(subjectId, topicId);
+      if (!sub || !topic) return;
+
+      const st = getTopicStats(topic);
+
+      const logsHtml = st.sortedLogs.length === 0
+        ? `<div style="text-align:center; padding:18px; background:var(--bg-surface); border-radius:12px; font-size:12.5px; color:var(--text-muted);">
+             No date &amp; time logs recorded for this topic yet.
+           </div>`
+        : st.sortedLogs.map((l) => {
+            const badgeCls = l.type === 'read' ? 'badge-read' : (l.type === 'revision' ? 'badge-rev' : 'badge-prac');
+            const lbl = l.type === 'read' ? 'READ' : (l.type === 'revision' ? 'REVISION' : 'PRACTICE');
+            const details = [];
+            if (l.durationMin) details.push(`${l.durationMin} mins`);
+            if (l.questions) details.push(`${l.questions} MCQs`);
+            if (l.accuracy) details.push(`${l.accuracy}% accuracy`);
+
+            return `
+              <div style="background:var(--bg-surface); border:1px solid var(--border-subtle); border-radius:12px; padding:10px 12px; margin-bottom:8px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:6px;">
+                  <span class="badge ${badgeCls}">${lbl}</span>
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="font-size:11px; font-weight:600; color:var(--text-muted);">${formatDateTime(l.timestamp)}</span>
+                    <button class="icon-btn" style="width:26px; height:26px; color:var(--danger);" title="Delete Log"
+                      onclick="deleteLogEntry('${sub.id}', '${topic.id}', '${l.id}')">✕</button>
+                  </div>
+                </div>
+                ${details.length ? `<div style="font-size:12px; font-weight:600; margin-top:5px;">${details.join(' • ')}</div>` : ''}
+                ${l.note ? `<div style="font-size:12px; color:var(--text-secondary); margin-top:4px;">${escapeHtml(l.note)}</div>` : ''}
+              </div>
+            `;
+          }).join('');
+
+      openSheet('Topic Tracker', `
+        <div style="margin-bottom:12px;">
+          <span class="marks-pill" style="margin-bottom:6px; display:inline-block;">${escapeHtml(sub.name)}</span>
+          <h2 style="font-size:17px; font-weight:800; line-height:1.3;">${escapeHtml(topic.title)}</h2>
+          <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:8px;">
+            <span class="badge ${st.isRead ? 'badge-read' : 'badge-neutral'}">Read: ${st.readCount}</span>
+            <span class="badge ${st.isRevised ? 'badge-rev' : 'badge-neutral'}">Revisions: ${st.revisionCount}</span>
+            <span class="badge ${st.isPracticed ? 'badge-prac' : 'badge-neutral'}">Practice: ${st.practiceCount} (${st.totalQuestions} Qs)</span>
+            <span class="badge badge-neutral">Priority: ${topic.priority}</span>
+          </div>
+        </div>
+
+        <!-- Log Action Row -->
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:16px;">
+          <button class="btn btn-sm ql-read" onclick="openLogSheet('${sub.id}', '${topic.id}', 'read')">+ Read</button>
+          <button class="btn btn-sm ql-rev" onclick="openLogSheet('${sub.id}', '${topic.id}', 'revision')">+ Revision</button>
+          <button class="btn btn-sm ql-prac" onclick="openLogSheet('${sub.id}', '${topic.id}', 'practice')">+ Practice</button>
+        </div>
+
+        <!-- Notes Section -->
+        <div class="form-group">
+          <label class="form-label">Topic Notes / Key Formulas</label>
+          <textarea id="topic-inline-notes" class="form-control" placeholder="Add important formulas, book page numbers, or mistakes to remember...">${escapeHtml(topic.notes || '')}</textarea>
+          <button class="btn btn-sm btn-tonal" style="margin-top:6px;" onclick="saveTopicInlineNotes('${sub.id}', '${topic.id}')">Save Notes</button>
+        </div>
+
+        <!-- Chronological Date & Time History -->
+        <div class="section-header" style="margin-top:14px;">
+          <span class="section-title">Date &amp; Time Log History (${st.sortedLogs.length})</span>
+        </div>
+        ${logsHtml}
+
+        <!-- Edit / Delete Topic Controls -->
+        <div style="display:flex; gap:8px; margin-top:16px; padding-top:12px; border-top:1px solid var(--border-subtle);">
+          <button class="btn btn-outline btn-block" onclick="openTopicFormSheet('${sub.id}', '${topic.id}')">Edit Topic</button>
+          <button class="btn btn-danger btn-block" onclick="confirmDeleteTopic('${sub.id}', '${topic.id}')">Delete Topic</button>
+        </div>
+      `);
+    }
+
+    /**
+     * Opens the Date & Time Activity Logging Bottom Sheet.
+     * Supports pre-selected subject/topic OR lets the user pick any subject/topic (Quick Log).
+     */
+    function openLogSheet(subjectId = null, topicId = null, defaultType = 'read') {
+      if (state.data.subjects.length === 0) {
+        showSnackbar('Please add a subject first.');
+        return;
+      }
+
+      const selectedSubId = subjectId || state.data.subjects[0].id;
+      const selectedSub = findSubject(selectedSubId) || state.data.subjects[0];
+      const selectedTopId = topicId || (selectedSub.topics[0] ? selectedSub.topics[0].id : '');
+
+      const subjectOptions = state.data.subjects
+        .map((s) => `<option value="${s.id}" ${s.id === selectedSub.id ? 'selected' : ''}>${escapeHtml(s.name)}</option>`)
+        .join('');
+
+      const topicOptions = selectedSub.topics
+        .map((t) => `<option value="${t.id}" ${t.id === selectedTopId ? 'selected' : ''}>${escapeHtml(t.title)}</option>`)
+        .join('');
+
+      const nowLocal = getLocalDateTimeValue();
+
+      openSheet('Log Study Session', `
+        <form id="log-activity-form" onsubmit="submitActivityLog(event)">
+          <div class="form-group">
+            <label class="form-label">Subject</label>
+            <select id="log-subject-id" class="form-control" onchange="populateLogTopicsDropdown(this.value)" required>
+              ${subjectOptions}
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Topic</label>
+            <select id="log-topic-id" class="form-control" required>
+              ${topicOptions || '<option value="">No topics in this subject</option>'}
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Activity Type</label>
+            <select id="log-type" class="form-control" onchange="togglePracticeFields(this.value)">
+              <option value="read" ${defaultType === 'read' ? 'selected' : ''}>Read Topic (First / Full Reading)</option>
+              <option value="revision" ${defaultType === 'revision' ? 'selected' : ''}>Revision Done</option>
+              <option value="practice" ${defaultType === 'practice' ? 'selected' : ''}>Practice / MCQs Done</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Date &amp; Time</label>
+            <input id="log-datetime" type="datetime-local" class="form-control" value="${nowLocal}" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Duration (mins)</label>
+              <input id="log-duration" type="number" min="1" max="600" class="form-control" placeholder="e.g. 45" />
+            </div>
+            <div class="form-group" id="practice-q-wrap" style="display:${defaultType === 'practice' ? 'block' : 'none'};">
+              <label class="form-label">MCQs Solved</label>
+              <input id="log-questions" type="number" min="0" max="1000" class="form-control" placeholder="e.g. 30" />
+            </div>
+          </div>
+
+          <div class="form-group" id="practice-acc-wrap" style="display:${defaultType === 'practice' ? 'block' : 'none'};">
+            <label class="form-label">Accuracy % (Optional)</label>
+            <input id="log-accuracy" type="number" min="0" max="100" class="form-control" placeholder="e.g. 85" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Session Remarks (Optional)</label>
+            <input id="log-note" type="text" class="form-control" placeholder="e.g. R.S. Khurmi MCQs, PYQ set, formula sheet..." />
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Save Date &amp; Time Log</button>
+        </form>
+      `);
+    }
+
+    function populateLogTopicsDropdown(subjectId) {
+      const sub = findSubject(subjectId);
+      const sel = document.getElementById('log-topic-id');
+      if (!sub || !sel) return;
+      if (sub.topics.length === 0) {
+        sel.innerHTML = '<option value="">No topics in this subject</option>';
+      } else {
+        sel.innerHTML = sub.topics.map((t) => `<option value="${t.id}">${escapeHtml(t.title)}</option>`).join('');
+      }
+    }
+
+    function togglePracticeFields(type) {
+      const show = type === 'practice' ? 'block' : 'none';
+      const qWrap = document.getElementById('practice-q-wrap');
+      const aWrap = document.getElementById('practice-acc-wrap');
+      if (qWrap) qWrap.style.display = show;
+      if (aWrap) aWrap.style.display = show;
+    }
+
+    function submitActivityLog(event) {
+      event.preventDefault();
+      const subjectId = document.getElementById('log-subject-id').value;
+      const topicId = document.getElementById('log-topic-id').value;
+      const type = document.getElementById('log-type').value;
+      const dtVal = document.getElementById('log-datetime').value;
+      const durationMin = Number(document.getElementById('log-duration').value) || 0;
+      const questions = type === 'practice' ? (Number(document.getElementById('log-questions').value) || 0) : 0;
+      const accuracy = type === 'practice' ? (Number(document.getElementById('log-accuracy').value) || 0) : 0;
+      const note = document.getElementById('log-note').value.trim();
+
+      const topic = findTopic(subjectId, topicId);
+      if (!topic) {
+        showSnackbar('Please select a valid topic first.');
+        return;
+      }
+
+      const ts = dtVal ? new Date(dtVal).toISOString() : new Date().toISOString();
+      if (!Array.isArray(topic.logs)) topic.logs = [];
+      topic.logs.push({
+        id: uid('log'),
+        type,
+        timestamp: ts,
+        durationMin,
+        questions,
+        accuracy,
+        note
+      });
+
+      saveState();
+      closeSheet();
+      render();
+      const label = type === 'read' ? 'Reading' : (type === 'revision' ? 'Revision' : 'Practice');
+      showSnackbar(`${label} logged with date & time!`);
+    }
+
+    /**
+     * Add or Edit Subject Bottom Sheet
+     */
+    function openSubjectFormSheet(editSubjectId = null) {
+      const existing = editSubjectId ? findSubject(editSubjectId) : null;
+      const selectedColor = existing ? existing.color : SUBJECT_COLORS[state.data.subjects.length % SUBJECT_COLORS.length];
+
+      openSheet(existing ? 'Edit Subject' : 'Add New Subject', `
+        <form onsubmit="submitSubjectForm(event, '${editSubjectId || ''}')">
+          <div class="form-group">
+            <label class="form-label">Subject Name</label>
+            <input id="sub-name" type="text" class="form-control" required
+              placeholder="e.g. Heat Transfer / Engineering Drawing"
+              value="${existing ? escapeHtml(existing.name) : ''}" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Exam Marks Weightage</label>
+            <input id="sub-marks" type="number" min="0" max="120" class="form-control" required
+              value="${existing ? existing.marks : 15}" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Accent Color</label>
+            <input id="sub-color" type="hidden" value="${selectedColor}" />
+            <div class="color-picker-row">
+              ${SUBJECT_COLORS.map((c) => `
+                <button type="button" class="color-swatch ${c === selectedColor ? 'selected' : ''}"
+                  style="background:${c};" onclick="selectSubjectColor('${c}', this)"></button>
+              `).join('')}
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">${existing ? 'Update Subject' : 'Create Subject'}</button>
+        </form>
+      `);
+    }
+
+    function selectSubjectColor(color, el) {
+      document.getElementById('sub-color').value = color;
+      document.querySelectorAll('.color-swatch').forEach((b) => b.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+
+    function submitSubjectForm(event, editSubjectId) {
+      event.preventDefault();
+      const name = document.getElementById('sub-name').value.trim();
+      const marks = Number(document.getElementById('sub-marks').value) || 0;
+      const color = document.getElementById('sub-color').value || '#2563EB';
+      if (!name) return;
+
+      if (editSubjectId) {
+        const sub = findSubject(editSubjectId);
+        if (sub) {
+          sub.name = name;
+          sub.marks = marks;
+          sub.color = color;
+          showSnackbar('Subject updated!');
+        }
+      } else {
+        const newSub = {
+          id: uid('sub'),
+          name,
+          marks,
+          color,
+          topics: []
+        };
+        state.data.subjects.push(newSub);
+        state.expandedSubjectIds.add(newSub.id);
+        showSnackbar('Subject added!');
+      }
+
+      saveState();
+      closeSheet();
+      render();
+    }
+
+    /**
+     * Add or Edit Topic Bottom Sheet
+     */
+    function openTopicFormSheet(subjectId, editTopicId = null) {
+      const sub = findSubject(subjectId);
+      if (!sub) return;
+      const existing = editTopicId ? findTopic(subjectId, editTopicId) : null;
+
+      openSheet(existing ? 'Edit Topic' : 'Add Topic', `
+        <form onsubmit="submitTopicForm(event, '${subjectId}', '${editTopicId || ''}')">
+          <div style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">
+            Subject: <strong>${escapeHtml(sub.name)}</strong>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Topic Title</label>
+            <input id="top-title" type="text" class="form-control" required
+              placeholder="e.g. Mohr's Circle & Principal Stresses"
+              value="${existing ? escapeHtml(existing.title) : ''}" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Priority</label>
+            <select id="top-priority" class="form-control">
+              <option value="High" ${existing && existing.priority === 'High' ? 'selected' : ''}>High Priority</option>
+              <option value="Medium" ${!existing || existing.priority === 'Medium' ? 'selected' : ''}>Medium Priority</option>
+              <option value="Low" ${existing && existing.priority === 'Low' ? 'selected' : ''}>Low Priority</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Study Notes / Book Reference (Optional)</label>
+            <textarea id="top-notes" class="form-control" placeholder="e.g. Refer R.K. Bansal Ch. 4, focus on numericals">${existing ? escapeHtml(existing.notes || '') : ''}</textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">${existing ? 'Save Changes' : 'Add Topic'}</button>
+        </form>
+      `);
+    }
+
+    function openQuickTopicPicker() {
+      if (state.data.subjects.length === 0) {
+        openSubjectFormSheet();
+        return;
+      }
+      openSheet('Choose Subject for New Topic', `
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          ${state.data.subjects.map((s) => `
+            <button class="btn btn-outline btn-block" style="justify-content:space-between;"
+              onclick="openTopicFormSheet('${s.id}')">
+              <span style="text-align:left;">${escapeHtml(s.name)}</span>
+              <span class="marks-pill">${s.marks} M</span>
+            </button>
+          `).join('')}
+        </div>
+      `);
+    }
+
+    function submitTopicForm(event, subjectId, editTopicId) {
+      event.preventDefault();
+      const sub = findSubject(subjectId);
+      if (!sub) return;
+      const title = document.getElementById('top-title').value.trim();
+      const priority = document.getElementById('top-priority').value;
+      const notes = document.getElementById('top-notes').value.trim();
+      if (!title) return;
+
+      if (editTopicId) {
+        const top = findTopic(subjectId, editTopicId);
+        if (top) {
+          top.title = title;
+          top.priority = priority;
+          top.notes = notes;
+          showSnackbar('Topic updated!');
+        }
+      } else {
+        sub.topics.push({
+          id: uid('top'),
+          title,
+          priority,
+          notes,
+          logs: []
+        });
+        state.expandedSubjectIds.add(sub.id);
+        showSnackbar('Topic added to syllabus!');
+      }
+
+      saveState();
+      closeSheet();
+      render();
+    }
+
+    /* =========================================================================
+       13. INLINE ACTIONS & CUSTOM CONFIRMATION DIALOGS (NO alert/confirm!)
+       ========================================================================= */
+    function saveTopicInlineNotes(subjectId, topicId) {
+      const topic = findTopic(subjectId, topicId);
+      const box = document.getElementById('topic-inline-notes');
+      if (!topic || !box) return;
+      topic.notes = box.value.trim();
+      saveState();
+      showSnackbar('Topic notes saved!');
+    }
+
+    function deleteLogEntry(subjectId, topicId, logId) {
+      const topic = findTopic(subjectId, topicId);
+      if (!topic) return;
+      topic.logs = topic.logs.filter((l) => l.id !== logId);
+      saveState();
+      render();
+      openTopicDetailSheet(subjectId, topicId);
+      showSnackbar('Log entry removed.');
+    }
+
+    function confirmDeleteTopic(subjectId, topicId) {
+      const topic = findTopic(subjectId, topicId);
+      if (!topic) return;
+      openSheet('Delete Topic?', `
+        <p style="font-size:13.5px; color:var(--text-secondary); margin-bottom:16px;">
+          Are you sure you want to delete <strong>${escapeHtml(topic.title)}</strong> and all its date/time study logs?
+        </p>
+        <div style="display:flex; gap:10px;">
+          <button class="btn btn-outline btn-block" onclick="openTopicDetailSheet('${subjectId}', '${topicId}')">Cancel</button>
+          <button class="btn btn-danger btn-block" onclick="executeDeleteTopic('${subjectId}', '${topicId}')">Delete</button>
+        </div>
+      `);
+    }
+
+    function executeDeleteTopic(subjectId, topicId) {
+      const sub = findSubject(subjectId);
+      if (!sub) return;
+      sub.topics = sub.topics.filter((t) => t.id !== topicId);
+      saveState();
+      closeSheet();
+      render();
+      showSnackbar('Topic deleted.');
+    }
+
+    function confirmDeleteSubject(subjectId) {
+      const sub = findSubject(subjectId);
+      if (!sub) return;
+      openSheet('Delete Subject?', `
+        <p style="font-size:13.5px; color:var(--text-secondary); margin-bottom:16px;">
+          Delete <strong>${escapeHtml(sub.name)}</strong> along with its ${sub.topics.length} topic(s) and logs?
+        </p>
+        <div style="display:flex; gap:10px;">
+          <button class="btn btn-outline btn-block" onclick="closeSheet()">Cancel</button>
+          <button class="btn btn-danger btn-block" onclick="executeDeleteSubject('${subjectId}')">Delete Subject</button>
+        </div>
+      `);
+    }
+
+    function executeDeleteSubject(subjectId) {
+      state.data.subjects = state.data.subjects.filter((s) => s.id !== subjectId);
+      state.expandedSubjectIds.delete(subjectId);
+      saveState();
+      closeSheet();
+      render();
+      showSnackbar('Subject deleted.');
+    }
+
+    function confirmResetSyllabus() {
+      openSheet('Reset to Official Syllabus?', `
+        <p style="font-size:13.5px; color:var(--text-secondary); margin-bottom:16px;">
+          This will restore the official 7-subject (120 Marks) JKSSB JE Mechanical Syllabus and erase current progress logs. Consider exporting a backup first.
+        </p>
+        <div style="display:flex; gap:10px;">
+          <button class="btn btn-outline btn-block" onclick="closeSheet()">Cancel</button>
+          <button class="btn btn-danger btn-block" onclick="executeResetSyllabus()">Reset Everything</button>
+        </div>
+      `);
+    }
+
+    function executeResetSyllabus() {
+      state.data = getOfficialSyllabusSeed();
+      state.expandedSubjectIds = new Set([state.data.subjects[0].id]);
+      saveState();
+      closeSheet();
+      render();
+      showSnackbar('Official JKSSB JE Mechanical syllabus restored.');
+    }
+
+    /* =========================================================================
+       14. EXPORT / IMPORT JSON BACKUP
+       ========================================================================= */
+    function exportBackupJSON() {
+      try {
+        const jsonStr = JSON.stringify(state.data, null, 2);
+        const blob = new Blob([jsonStr], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `jkssb_je_mech_backup_${getLocalDateKey(new Date())}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showSnackbar('Backup JSON exported!');
+      } catch (err) {
+        console.error(err);
+        showSnackbar('Could not export backup.');
+      }
+    }
+
+    function triggerImportJSON() {
+      document.getElementById('json-file-input').click();
+    }
+
+    function handleImportFile(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          if (!parsed || !Array.isArray(parsed.subjects)) {
+            throw new Error('Invalid backup structure');
+          }
+          state.data = parsed;
+          state.expandedSubjectIds = new Set(parsed.subjects[0] ? [parsed.subjects[0].id] : []);
+          saveState();
+          render();
+          showSnackbar('Backup restored successfully!');
+        } catch (err) {
+          console.error(err);
+          showSnackbar('Invalid JSON backup file.');
+        } finally {
+          event.target.value = '';
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    /* =========================================================================
+       15. NAVIGATION & UI INTERACTION HANDLERS
+       ========================================================================= */
+    function switchTab(tabName) {
+      state.activeTab = tabName;
+      document.getElementById('main-content').scrollTop = 0;
+      render();
+    }
+
+    function jumpToSubject(subjectId) {
+      state.expandedSubjectIds.add(subjectId);
+      state.syllabusFilter = 'all';
+      state.searchQuery = '';
+      switchTab('syllabus');
+    }
+
+    function toggleSubjectExpand(subjectId) {
+      if (state.expandedSubjectIds.has(subjectId)) {
+        state.expandedSubjectIds.delete(subjectId);
+      } else {
+        state.expandedSubjectIds.add(subjectId);
+      }
+      render();
+    }
+
+    function onSearchInput(val) {
+      state.searchQuery = val;
+      render();
+      // Preserve focus & cursor position on search input
+      const input = document.getElementById('syllabus-search');
+      if (input) {
+        input.focus();
+        input.setSelectionRange(val.length, val.length);
+      }
+    }
+
+    function setSyllabusFilter(filterId) {
+      state.syllabusFilter = filterId;
+      render();
+    }
+
+    function setTimelineFilter(filterId) {
+      state.timelineFilter = filterId;
+      render();
+    }
+
+    function setTimelineDateFilter(dateStr) {
+      state.timelineDateFilter = dateStr;
+      render();
+    }
+
+    /* =========================================================================
+       16. INITIALIZATION & GLOBAL EVENT LISTENERS
+       ========================================================================= */
+    function initApp() {
+      initTheme();
+      loadState();
+
+      // Bottom Navigation
+      document.querySelectorAll('.nav-item').forEach((btn) => {
+        btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+      });
+
+      // Theme Toggle
+      document.getElementById('btn-theme-toggle').addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        applyTheme(current === 'dark' ? 'light' : 'dark');
+      });
+
+      // Context-Aware FAB
+      document.getElementById('fab-btn').addEventListener('click', () => {
+        if (state.activeTab === 'syllabus') {
+          openSubjectFormSheet();
+        } else {
+          openLogSheet();
+        }
+      });
+
+      // Sheet Close Controls
+      document.getElementById('sheet-close').addEventListener('click', closeSheet);
+      document.getElementById('sheet-backdrop').addEventListener('click', (e) => {
+        if (e.target.id === 'sheet-backdrop') closeSheet();
+      });
+
+      // JSON File Import
+      document.getElementById('json-file-input').addEventListener('change', handleImportFile);
+
+      render();
+    }
+
+    // Boot App
+    initApp();
+  </script>
+</body>
+</html>
+```
